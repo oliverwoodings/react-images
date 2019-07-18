@@ -310,7 +310,7 @@ class Carousel extends Component<CarouselProps, CarouselState> {
     ) : null;
   };
   renderHeader = () => {
-    const { Header, HeaderClose, HeaderFullscreen } = this.components;
+    const { Header, HeaderClose, HeaderFullscreen, HeaderDownload } = this.components;
     const { getCloseLabel, getFullscreenLabel } = this.getFormatters();
     const { commonProps } = this;
 
@@ -322,6 +322,7 @@ class Carousel extends Component<CarouselProps, CarouselState> {
         components={{
           CloseButton: HeaderClose,
           FullscreenButton: HeaderFullscreen,
+          DownloadButton: HeaderDownload,
         }}
         data={this.getViewData()}
         innerProps={{ innerRef: this.getHeader }}

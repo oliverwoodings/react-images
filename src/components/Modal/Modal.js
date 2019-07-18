@@ -18,6 +18,7 @@ type MouseOrKeyboardEvent = MouseEvent | KeyboardEvent;
 export type CloseType = (event: MouseOrKeyboardEvent) => void;
 export type ModalProps = {
   allowFullscreen: boolean,
+  allowDownload: boolean,
   isFullscreen: boolean,
   onClose: CloseType,
   toggleFullscreen: any => void,
@@ -26,6 +27,8 @@ export type ModalProps = {
 export type Props = {
   /* Enable/disable the ability to "fullscreen" the dialog */
   allowFullscreen: boolean,
+  /* Enable/disable the ability to download images from the dialog */
+  download: boolean,
   /* Carousel only supported */
   children: CarouselType,
   /* Enable/disable calling `onClose` when the backdrop is clicked */
@@ -47,6 +50,7 @@ export type Props = {
 type State = { isFullscreen: boolean };
 const defaultProps = {
   allowFullscreen: !isTouch(),
+  allowDownload: true,
   closeOnBackdropClick: true,
   closeOnEsc: true,
   styles: {},
@@ -141,7 +145,7 @@ class Modal extends Component<Props, State> {
   }
   render() {
     const { Blanket, Positioner, Dialog } = this.components;
-    const { allowFullscreen, children } = this.props;
+    const { allowFullscreen, allowDownload, children } = this.props;
     const { isFullscreen } = this.state;
     const commonProps = (this.commonProps = this.getCommonProps());
 
@@ -151,6 +155,7 @@ class Modal extends Component<Props, State> {
     // forward props to modal for use in internal components
     const modalProps: ModalProps = {
       allowFullscreen,
+      allowDownload,
       isFullscreen,
       onClose: this.handleClose,
       toggleFullscreen: this.toggleFullscreen,

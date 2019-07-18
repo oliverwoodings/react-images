@@ -46,3 +46,9 @@ export const FullscreenExit = ({ size = 32, ...props }: Props) => (
     <path d="M15.984 8.016h3v1.969h-4.969v-4.969h1.969v3zM14.016 18.984v-4.969h4.969v1.969h-3v3h-1.969zM8.016 8.016v-3h1.969v4.969h-4.969v-1.969h3zM5.016 15.984v-1.969h4.969v4.969h-1.969v-3h-3z" />
   </Svg>
 );
+export const Download = ({ size = 32, ...props }: Props) => (
+  <Svg size={size} {...props}>
+    <path fill="none" d="M0 0h24v24H0V0z"/><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" />
+  </Svg>
+);
+

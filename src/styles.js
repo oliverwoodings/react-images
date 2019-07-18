@@ -12,6 +12,7 @@ import {
   headerCSS,
   headerCloseCSS,
   headerFullscreenCSS,
+  headerDownloadCSS
 } from './components/Header';
 import {
   footerCSS,
@@ -39,6 +40,7 @@ export type CarouselStyles = {
   header: StyleDef,
   headerClose: StyleDef,
   headerFullscreen: StyleDef,
+  headerDownload: StyleDef,
   navigation: StyleDef,
   navigationPrev: StyleDef,
   navigationNext: StyleDef,
@@ -60,6 +62,7 @@ export const defaultCarouselStyles: CarouselStyles = {
   header: headerCSS,
   headerClose: headerCloseCSS,
   headerFullscreen: headerFullscreenCSS,
+  headerDownload: headerDownloadCSS,
   navigation: navigationCSS,
   navigationPrev: navigationPrevCSS,
   navigationNext: navigationNextCSS,

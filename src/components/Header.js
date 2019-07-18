@@ -6,7 +6,8 @@ import glam from 'glam';
 import { Button, Div } from '../primitives';
 import { className } from '../utils';
 import type { PropsWithStyles } from '../types';
-import { Close, FullscreenEnter, FullscreenExit } from './svg';
+import { Close, FullscreenEnter, FullscreenExit, Download } from './svg';
+import { getDownload } from './component-helpers';
 
 type State = { interactionIsIdle: boolean };
 type Props = PropsWithStyles &
@@ -45,18 +46,20 @@ const Header = (props: Props) => {
     innerProps,
     isModal,
     modalProps,
+    data,
   } = props;
 
   if (!isModal) return null;
 
   const {
     allowFullscreen,
+    allowDownload,
     isFullscreen,
     onClose,
     toggleFullscreen,
   } = modalProps;
   const FsIcon = isFullscreen ? FullscreenExit : FullscreenEnter;
-  const { CloseButton, FullscreenButton } = components;
+  const { CloseButton, FullscreenButton, DownloadButton } = components;
   const state = { isFullscreen, isModal };
 
   return (
@@ -82,6 +85,18 @@ const Header = (props: Props) => {
           >
             <FsIcon size={32} />
           </FullscreenButton>
+        ) : null}
+        {allowDownload ? (
+          <DownloadButton
+            getStyles={getStyles}
+            innerProps={{
+              title: 'Download'
+            }}
+          >
+            <a href={getDownload({ data })} download>
+              <Download size={32} />
+            </a>
+          </DownloadButton>
         ) : null}
         <CloseButton
           getStyles={getStyles}
@@ -130,6 +145,22 @@ export const HeaderFullscreen = (props: ButtonProps) => {
     <Button
       css={getStyles('headerFullscreen', props)}
       className={className(['header_button', 'header_button--fullscreen'])}
+      type="button"
+      {...innerProps}
+    >
+      {children}
+    </Button>
+  );
+};
+
+export const headerDownloadCSS = headerButtonCSS;
+export const HeaderDownload = (props: ButtonProps) => {
+  const { children, getStyles, innerProps } = props;
+
+  return (
+    <Button
+      css={getStyles('headerFullscreen', props)}
+      className={className(['header_button', 'header_button--download'])}
       type="button"
       {...innerProps}
     >
